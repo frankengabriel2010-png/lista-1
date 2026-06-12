@@ -1,7 +1,5 @@
-﻿using System;
-
-Console.Write("Informe a idade do visitante: ");
-int idade = int.Parse(Console.ReadLine());
+﻿Console.Write("Informe a idade do visitante: ");
+int idade = int.Parse(Console.ReadLine()!);
 
 if (idade >= 16)
 {
@@ -11,4 +9,4 @@ else
 {
     Console.WriteLine("Entrada permitida somente com responsável.");
 }
-DllNotFoundException
+
