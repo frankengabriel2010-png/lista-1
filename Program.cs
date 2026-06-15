@@ -1,31 +1,25 @@
-﻿88class Program
+﻿using System;
+using System.Globalization;
+
+class Program
 {
     static void Main()
     {
-        // 1. Entrada de dados
-        Console.Write("Informe a temperatura atual: ");
-        string entrada = Console.ReadLine();
-        
-        // Conversão da entrada para número decimal (double)
-        if (double.TryParse(entrada, out double temperatura))
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+
+        Console.Write("Informe o valor total da compra: ");
+        double valorOriginal = double.Parse(Console.ReadLine());
+
+        double desconto = 0;
+        if (valorOriginal >= 200.00)
         {
-            // 2. Processamento e Saída de dados
-            if (temperatura < 18)
-            {
-                Console.WriteLine("Ambiente frio.");
-            }
-            else if (temperatura >= 18 && temperatura <= 26)
-            {
-                Console.WriteLine("Ambiente confortável.");
-            }
-            else
-            {
-                Console.WriteLine("Ambiente quente.");
-            }
+            desconto = valorOriginal * 0.10;
         }
-        else
-        {
-            Console.WriteLine("Por favor, insira um valor numérico válido.");
-        }
+
+        double valorFinal = valorOriginal - desconto;
+
+        Console.WriteLine($"Valor original: R$ {valorOriginal:F2}");
+        Console.WriteLine($"Desconto aplicado: R$ {desconto:F2}");
+        Console.WriteLine($"Valor final: R$ {valorFinal:F2}");
     }
 }
