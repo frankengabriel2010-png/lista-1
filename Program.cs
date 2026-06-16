@@ -1,24 +1,34 @@
 ﻿using System;
-using System.Globalization;
 
 class Program
 {
     static void Main()
     {
-        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+        int positivos = 0;
+        int negativos = 0;
+        int zeros = 0;
 
-        string[] ordinais = { "primeiro", "segundo", "terceiro", "quarto", "quinto" };
-        double soma = 0;
-
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
-            Console.Write($"Informe o {ordinais[i]} valor: ");
-            soma += double.Parse(Console.ReadLine());
+            Console.Write("Informe um número: ");
+            int numero = int.Parse(Console.ReadLine());
+
+            if (numero > 0)
+            {
+                positivos++;
+            }
+            else if (numero < 0)
+            {
+                negativos++;
+            }
+            else
+            {
+                zeros++;
+            }
         }
 
-        double media = soma / 5;
-
-        Console.WriteLine($"Soma dos valores: {soma}");
-        Console.WriteLine($"Média dos valores: {media}");
+        Console.WriteLine($"Quantidade de positivos: {positivos}");
+        Console.WriteLine($"Quantidade de negativos: {negativos}");
+        Console.WriteLine($"Quantidade de zeros: {zeros}");
     }
 }
