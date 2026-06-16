@@ -1,45 +1,46 @@
 ﻿using System;
-using System.Globalization;
 
 class Program
 {
     static void Main()
     {
-        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
-
-        Console.Write("Informe o saldo inicial: ");
-        double saldo = double.Parse(Console.ReadLine());
+        Console.Write("Informe a quantidade inicial em estoque: ");
+        int estoque = int.Parse(Console.ReadLine());
         int operacao = 0;
 
-        while (operacao != 3)
+        while (operacao != 4)
         {
             Console.Write("Escolha a operação: ");
             operacao = int.Parse(Console.ReadLine());
 
             if (operacao == 1)
             {
-                Console.Write("Informe o valor da movimentação: ");
-                double valor = double.Parse(Console.ReadLine());
-                saldo += valor;
-                Console.WriteLine($"Entrada registrada. Saldo atual: R$ {saldo:F2}");
+                Console.Write("Informe o quantidade movimentada: ");
+                int quantidade = int.Parse(Console.ReadLine());
+                estoque += quantidade;
+                Console.WriteLine($"Entrada registrada. Estoque atual: {estoque}");
             }
             else if (operacao == 2)
             {
-                Console.Write("Informe o valor da movimentação: ");
-                double valor = double.Parse(Console.ReadLine());
+                Console.Write("Informe o quantidade movimentada: ");
+                int quantidade = int.Parse(Console.ReadLine());
 
-                if (valor <= saldo)
+                if (quantidade <= estoque)
                 {
-                    saldo -= valor;
-                    Console.WriteLine($"Saída registrada. Saldo atual: R$ {saldo:F2}");
+                    estoque -= quantidade;
+                    Console.WriteLine($"Saída registrada. Estoque atual: {estoque}");
                 }
                 else
                 {
-                    Console.WriteLine("Saldo insuficiente.");
+                    Console.WriteLine("Quantidade insuficiente em estoque.");
                 }
+            }
+            else if (operacao == 3)
+            {
+                Console.WriteLine($"Estoque atual: {estoque}");
             }
         }
 
-        Console.WriteLine($"Saldo final: R$ {saldo:F2}");
+        Console.WriteLine($"Estoque final: {estoque}");
     }
 }
