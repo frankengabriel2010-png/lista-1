@@ -1,24 +1,26 @@
 ﻿using System;
+using System.Globalization;
 
 class Program
 {
     static void Main()
     {
-        int senhaCorreta = 1234;
-        int senhaDigitada;
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+        double nota;
 
-        do
+        while (true)
         {
-            Console.Write("Informe a senha: ");
-            senhaDigitada = int.Parse(Console.ReadLine());
+            Console.Write("Informe uma nota de 0 a 10: ");
+            nota = double.Parse(Console.ReadLine());
 
-            if (senhaDigitada != senhaCorreta)
+            if (nota >= 0 && nota <= 10)
             {
-                Console.WriteLine("Senha incorreta. Tente novamente.");
+                break;
             }
 
-        } while (senhaDigitada != senhaCorreta);
+            Console.WriteLine("Nota inválida. Informe novamente.");
+        }
 
-        Console.WriteLine("Acesso permitido.");
+        Console.WriteLine($"Nota registrada: {nota}");
     }
 }
