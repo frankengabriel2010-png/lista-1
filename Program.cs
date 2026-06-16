@@ -7,20 +7,39 @@ class Program
     {
         CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 
-        Console.Write("Informe a quantidade de clientes atendidos: ");
-        int clientes = int.Parse(Console.ReadLine());
+        Console.Write("Informe o saldo inicial: ");
+        double saldo = double.Parse(Console.ReadLine());
+        int operacao = 0;
 
-        double tempoTotal = 0;
-
-        for (int i = 0; i < clientes; i++)
+        while (operacao != 3)
         {
-            Console.Write("Informe o tempo do atendimento: ");
-            tempoTotal += double.Parse(Console.ReadLine());
+            Console.Write("Escolha a operação: ");
+            operacao = int.Parse(Console.ReadLine());
+
+            if (operacao == 1)
+            {
+                Console.Write("Informe o valor da movimentação: ");
+                double valor = double.Parse(Console.ReadLine());
+                saldo += valor;
+                Console.WriteLine($"Entrada registrada. Saldo atual: R$ {saldo:F2}");
+            }
+            else if (operacao == 2)
+            {
+                Console.Write("Informe o valor da movimentação: ");
+                double valor = double.Parse(Console.ReadLine());
+
+                if (valor <= saldo)
+                {
+                    saldo -= valor;
+                    Console.WriteLine($"Saída registrada. Saldo atual: R$ {saldo:F2}");
+                }
+                else
+                {
+                    Console.WriteLine("Saldo insuficiente.");
+                }
+            }
         }
 
-        double tempoMedio = clientes > 0 ? tempoTotal / clientes : 0;
-
-        Console.WriteLine($"Tempo total de atendimento: {tempoTotal} minutos");
-        Console.WriteLine($"Tempo médio por cliente: {tempoMedio} minutos");
+        Console.WriteLine($"Saldo final: R$ {saldo:F2}");
     }
 }
