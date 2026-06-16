@@ -1,46 +1,25 @@
 ﻿using System;
+using System.Globalization;
 
 class Program
 {
     static void Main()
     {
-        Console.Write("Informe a quantidade inicial em estoque: ");
-        int estoque = int.Parse(Console.ReadLine());
-        int operacao = 0;
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 
-        while (operacao != 4)
+        Console.Write("Informe o valor total da compra: ");
+        double valorOriginal = double.Parse(Console.ReadLine());
+
+        double desconto = 0;
+        if (valorOriginal >= 200.00)
         {
-            Console.Write("Escolha a operação: ");
-            operacao = int.Parse(Console.ReadLine());
-
-            if (operacao == 1)
-            {
-                Console.Write("Informe o quantidade movimentada: ");
-                int quantidade = int.Parse(Console.ReadLine());
-                estoque += quantidade;
-                Console.WriteLine($"Entrada registrada. Estoque atual: {estoque}");
-            }
-            else if (operacao == 2)
-            {
-                Console.Write("Informe o quantidade movimentada: ");
-                int quantidade = int.Parse(Console.ReadLine());
-
-                if (quantidade <= estoque)
-                {
-                    estoque -= quantidade;
-                    Console.WriteLine($"Saída registrada. Estoque atual: {estoque}");
-                }
-                else
-                {
-                    Console.WriteLine("Quantidade insuficiente em estoque.");
-                }
-            }
-            else if (operacao == 3)
-            {
-                Console.WriteLine($"Estoque atual: {estoque}");
-            }
+            desconto = valorOriginal * 0.10;
         }
 
-        Console.WriteLine($"Estoque final: {estoque}");
+        double valorFinal = valorOriginal - desconto;
+
+        Console.WriteLine($"Valor original: R$ {valorOriginal:F2}");
+        Console.WriteLine($"Desconto aplicado: R$ {desconto:F2}");
+        Console.WriteLine($"Valor final: R$ {valorFinal:F2}");
     }
 }
